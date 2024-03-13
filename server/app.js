@@ -7,6 +7,7 @@ require('dotenv').config()
 const indexRouter = require('./routes/index');
 const apicache = require("apicache")
 let cache = apicache.middleware;
+const cors = require("cors")
 
 
 const app = express();
@@ -23,6 +24,7 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -3,8 +3,8 @@ const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
 exports.create_get = asyncHandler(async(req, res, next)=>{
-    res.json("uuaa")
-    res.json("s")
+    
+    res.json({data1: "adfawegfs", data2: "cc"});
 })
 
 exports.create_post = [
