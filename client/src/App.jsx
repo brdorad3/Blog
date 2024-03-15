@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import { Link } from "react-router-dom";
 import './App.css'
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
           <p>Data 2: {test.data2}</p>
         </div>
       )}
+      <Link to="create" >Create new user</Link>
     </div>
     </>
   )
