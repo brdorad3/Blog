@@ -24,11 +24,11 @@ function App() {
 <div>
       {test && (
         <div>
-          <p>Data 1: {test.data1}</p>
+          <p className="" >Data 1: {test.data1}</p>
           <p>Data 2: {test.data2}</p>
         </div>
       )}
-      <Link to="create" >Create new user</Link>
+      <Link to="create" className='text-indigo-900 text-2xl' >Create new user</Link>
     </div>
     </>
   )

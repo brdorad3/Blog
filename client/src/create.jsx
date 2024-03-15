@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import './App.css'
+
 
 function Create() {
-
   return (
     <>
-<p>jah</p>
-<Link to="/">Home</Link>
+<p className='' >jah</p>
+<Link to="/" className='text-indigo-900 text-2xl' >Home</Link>
     </>
   )
 }
-
 export default Create
