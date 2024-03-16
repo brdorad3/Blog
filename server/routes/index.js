@@ -9,6 +9,6 @@ router.get('/', function(req, res, next) {
   res.json("uaaaaaaaaaaaaa");
 });
 router.get("/create", userCon.create_get)
-router.post("/create", userCon.create_post)
+router.post("/api/create", userCon.create_post)
 
 module.exports = router;
