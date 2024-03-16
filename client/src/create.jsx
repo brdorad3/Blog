@@ -1,24 +1,16 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios"
+import React, { useState } from 'react';
+import { Link } from "react-router-dom"
+import axios from 'axios';
 
-function Create() {
+const Create = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: '',
+    password: ''
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3000/api/create', formData);
-      console.log(response.data);
-  
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
-  };
+  const [errors, setErrors] = useState([]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -26,16 +18,60 @@ function Create() {
       [name]: value
     });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/api/create', formData);
+      console.log(response.data);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setErrors(error.response.data.errors || []);
+      } else {
+        console.error('Error submitting form:', error);
+      }
+    }
+  };
+
   return (
     <>
-<Link to="/" className='text-indigo-900 text-2xl' >Home</Link>
-<form onSubmit={handleSubmit} action="http://localhost:3000/create">
-  <input type="text" minLength={6} name="username" maxLength={20} value={formData.username} required={true} placeholder="username" onChange={handleChange} />
-  <input type="email" minLength={6} name="email" maxLength={50} value={formData.email} required={true} placeholder="email" onChange={handleChange} />
-  <input type="password" minLength={8} name="password" maxLength={20} value={formData.password} required={true} placeholder="password" onChange={handleChange} />
-  <button type="submit" className="p-1" >Submit</button>
-</form>
+    <Link to="/" className='text-indigo-900 text-2xl' >Home</Link>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          placeholder="Username"
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Password"
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {errors.length > 0 && (
+        <div>
+          <h4>Error(s) occurred:</h4>
+          <ul>
+            {errors.map((error, index) => (
+              <li key={index}>{error.msg}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </>
-  )
-}
-export default Create
+  );
+};
+
+export default Create;

@@ -6,12 +6,18 @@ const bcrypt = require('bcryptjs');
 
 
 exports.create_get = asyncHandler(async(req, res, next)=>{
-    
-    res.json({data1: "ok", data2: "ccc"});
+    const user = await User.find({email: "unique@gmail.com"}).sort({username:1}).exec();
+    res.json({user});
 })
 
 exports.create_post = [
-    body("username").isLength({min:1}).escape().withMessage("Username must be specified"),
+    body("username").isLength({min:1}).escape().withMessage("Username must be specified")
+    .custom(async (value) => {
+        const user = await User.findOne({ username: value });
+        if (user) {
+            throw new Error("Username is already in use");
+        }
+    }).escape(),
     body("email").isLength({min:1}).withMessage("Email must be specified").isEmail().withMessage("Please enter valid email")
     .custom(async (value) => {
         const user = await User.findOne({ email: value });
@@ -19,7 +25,7 @@ exports.create_post = [
             throw new Error("Email is already in use");
         }
     }).escape(),
-    body("password").isLength({min:8}).escape().withMessage("Password must be specified").isStrongPassword().withMessage("Please enter valid password"),
+    body("password").isLength({min:8}).escape().withMessage("Password must be specified").isStrongPassword().withMessage("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."),
     asyncHandler(async(req, res, next)=>{
         
         console.log(req.body)
@@ -29,10 +35,11 @@ exports.create_post = [
             res.status(400).json({ errors: errors.array() });
         }
         try{
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password,
+            password: hashedPassword,
         })
         
         await user.save();
