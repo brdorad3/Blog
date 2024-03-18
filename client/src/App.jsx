@@ -23,8 +23,10 @@ function App() {
     <>
 <div>
       
-      
+      <div className="flex flex-col">
       <Link to="create" className='text-indigo-900 text-2xl' >Create new user</Link>
+      <Link to="login" className='text-indigo-900 text-2xl' >Log in</Link>
+    </div>
     </div>
     </>
   )

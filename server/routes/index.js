@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.json("uaaaaaaaaaaaaa");
 });
-router.get("/create", userCon.create_get)
-router.post("/api/create", userCon.create_post)
+router.get("/create", userCon.create_get);
+router.post("/api/create", userCon.create_post);
+router.post("api/login", userCon.log_in_post);
 
 module.exports = router;

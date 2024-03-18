@@ -26,7 +26,8 @@ const postSchema = new Schema({
         default: Date.now()
     },
     isPublished: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 })
 

@@ -8,6 +8,10 @@ const indexRouter = require('./routes/index');
 const apicache = require("apicache")
 let cache = apicache.middleware;
 const cors = require("cors")
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/user")
 
 
 const app = express();
@@ -26,9 +30,47 @@ app.set('view engine', 'jade');
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
+app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true, cookie:{maxAge: new Date(Date.now() + 3600000)}}));
+app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+passport.use(
+  new LocalStrategy({
+    usernameField: "email",
+    passwordField: "password"
+
+  },
+    
+    async (username, password, done) => {
+    try {
+      const user = await User.findOne({ email: username });
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      };
+      if (user.password !== password) {
+        return done(null, false, { message: "Incorrect password" });
+      };
+      return done(null, user);
+    } catch(err) {
+      return done(err);
+    };
+  })
+);
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch(err) {
+    done(err);
+  };
+});
 
 
 app.use('/', indexRouter);

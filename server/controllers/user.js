@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const axios = require("axios");
 const bcrypt = require('bcryptjs');
+const passport = require("passport");
 
 
 exports.create_get = asyncHandler(async(req, res, next)=>{
@@ -11,7 +12,7 @@ exports.create_get = asyncHandler(async(req, res, next)=>{
 })
 
 exports.create_post = [
-    body("username").isLength({min:1}).escape().withMessage("Username must be specified")
+    body("username").isLength({min:1, max:20}).escape().withMessage("Username must be specified")
     .custom(async (value) => {
         const user = await User.findOne({ username: value });
         if (user) {
@@ -28,7 +29,7 @@ exports.create_post = [
     body("password").isLength({min:8}).escape().withMessage("Password must be specified").isStrongPassword().withMessage("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."),
     asyncHandler(async(req, res, next)=>{
         
-        console.log(req.body)
+        
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             
@@ -50,3 +51,9 @@ exports.create_post = [
     }
    } )
 ]
+exports.log_in_post= passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/log-in",
+    failureFlash: true
+    
+  });
