@@ -43,6 +43,7 @@ const Create = () => {
           value={formData.username}
           onChange={handleChange}
           placeholder="Username"
+          required
         />
         <input
           type="email"
@@ -50,6 +51,7 @@ const Create = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
+          required
         />
         <input
           type="password"
@@ -57,6 +59,7 @@ const Create = () => {
           value={formData.password}
           onChange={handleChange}
           placeholder="Password"
+          required
         />
         <button type="submit">Submit</button>
       </form>

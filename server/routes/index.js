@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 });
 router.get("/create", userCon.create_get);
 router.post("/api/create", userCon.create_post);
-router.post("api/login", userCon.log_in_post);
+router.get("/api/login", userCon.log_in_get);
+router.post("/api/login", userCon.log_in_post);
 
 module.exports = router;

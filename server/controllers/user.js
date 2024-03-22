@@ -51,9 +51,29 @@ exports.create_post = [
     }
    } )
 ]
-exports.log_in_post= passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/log-in",
-    failureFlash: true
-    
+exports.log_in_get = asyncHandler(async(req, res, next)=>{
+    res.json("ii")
+})
+exports.log_in_post = asyncHandler(async (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        
+       
+      if (err) {
+        
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+      if (!user) {
+        return res.status(401).json({ message: info.message });
+      }
+      // If authentication succeeds, you may want to manually log the user in
+      req.login(user, (err) => {
+        if (err) {
+          return res.status(500).json({ message: 'Internal server error' });
+        }
+        return res.json({ message: 'Login successful' });
+      });
+    })(req, res, next);
   });
+exports.log_in_posts = asyncHandler(async(res, req, next)=>{
+console.log(req.body)
+})
