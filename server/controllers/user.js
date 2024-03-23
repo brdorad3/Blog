@@ -70,7 +70,7 @@ exports.log_in_post = asyncHandler(async (req, res, next) => {
         if (err) {
           return res.status(500).json({ message: 'Internal server error' });
         }
-        return res.json({ message: 'Login successful' });
+        return res.json({ message: 'Login successful' ,user:user});
       });
     })(req, res, next);
   });

@@ -43,6 +43,8 @@ const Create = () => {
           value={formData.username}
           onChange={handleChange}
           placeholder="Username"
+          minLength={1}
+          maxLength={16}
           required
         />
         <input
@@ -51,6 +53,8 @@ const Create = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
+          minLength={7}
+          maxLength={50}
           required
         />
         <input
@@ -59,6 +63,8 @@ const Create = () => {
           value={formData.password}
           onChange={handleChange}
           placeholder="Password"
+          minLength={8}
+          maxLength={25}
           required
         />
         <button type="submit">Submit</button>

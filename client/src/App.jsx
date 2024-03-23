@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import './App.css'
+import Navbar from './navbar';
 
 function App() {
   let [test, setTest] = useState(null)
@@ -21,13 +22,7 @@ function App() {
 
   return (
     <>
-<div>
-      
-      <div className="flex flex-col">
-      <Link to="create" className='text-indigo-900 text-2xl' >Create new user</Link>
-      <Link to="login" className='text-indigo-900 text-2xl' >Log in</Link>
-    </div>
-    </div>
+    <Navbar />
     </>
   )
 }
