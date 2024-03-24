@@ -5,4 +5,20 @@
 input,  button, textarea{
     border: 2px solid black;
     border-radius: 7px;
+}/* #008080 #fbfccf*/
+
+.blue{
+    color: #008080;
+}
+.bg-blue{
+    background-color: #008080;
+}
+.border-blue{
+    border-bottom: 2px solid #008080;
+}
+body{
+    background-color: #fbfccf;
+}
+.white{
+    color: #fbfccf;
 }

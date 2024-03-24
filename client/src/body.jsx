@@ -24,15 +24,17 @@ function Body(){
 return(<>
  {tests && 
  (  
+  <div className="mx-60 my-10 border-4 border-white bg-blue rounded-2xl white" >
         <ul>
           {tests.map((test, index) => (
-            <li key={index}>
+            <li className="white" key={index}>
                 {console.log(test)}
               <h1>{test.title}</h1>
               <p>{test.content}</p>
             </li>
           ))}
         </ul>
+        </div>
       )}
 
 </>)
