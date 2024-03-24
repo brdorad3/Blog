@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Create from "./create"
 import LogIn from "./login"
-
+import Write from "./write"
 
 const router = createBrowserRouter([
   {
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <LogIn />,
+  },
+  {
+    path: "write",
+    element: <Write />,
   },
 ]);
 

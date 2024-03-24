@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import './App.css'
 import Navbar from './navbar';
+import Body from './body'
 
 function App() {
   let [test, setTest] = useState(null)
@@ -23,7 +24,13 @@ function App() {
   return (
     <>
     <Navbar />
+    {test &&
+    
+    <p>{test.user[0].username}</p>}
+    
+    <Body />
     </>
+    
   )
 }
 

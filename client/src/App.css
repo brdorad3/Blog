@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-input,  button{
+input,  button, textarea{
     border: 2px solid black;
     border-radius: 7px;
 }

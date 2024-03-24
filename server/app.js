@@ -53,8 +53,6 @@ passport.use(
   },
     
     async (username, password, done) => {
-      console.log(username)
-      console.log(password)
     try {
       const user = await User.findOne({ email: username });
       if (!user) {
@@ -69,6 +67,7 @@ passport.use(
         return done(null, false, { message: "Incorrect password" });
       };
       console.log("user")
+      
       return done(null, user);
       
     } catch(err) {
