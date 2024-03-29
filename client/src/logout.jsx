@@ -1,6 +1,7 @@
 import axios from "axios"
 import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
+import Navbar from "./navbar";
 
 function Logout(){
     const navigate = useNavigate();
@@ -21,11 +22,14 @@ function Logout(){
     };
 
     return (
+        <>
+        <Navbar/>
         <div>
             <p>Are you sure you want to logout?</p>
             <button onClick={handleLogout}>Logout</button>
             <Link to="/">Cancel</Link>
         </div>
+        </>
     );
 }
 export default Logout

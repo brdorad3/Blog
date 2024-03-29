@@ -6,6 +6,8 @@ import Create from "./create";
 import LogIn from "./login";
 import Write from "./write";
 import Logout from "./logout";
+import Details from "./details";
+
 
 const UserDataContext = React.createContext();
 
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "create",
     element: <Create />,
+  },
+  {
+    path: "/:postId",
+    element: <Details/>
   },
   {
     path: "login",

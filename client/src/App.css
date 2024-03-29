@@ -1,6 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+	font-family: 'ShadowHand';
+	src: url('//2ttf.com/webfont/UIswCwhB/webfont.ttf') format('truetype');
+}
+
+
+.yatra, h2{
+    
+    font-family: "Yatra One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
 
 input,  button, textarea{
     border: 2px solid black;
@@ -16,7 +29,7 @@ input,  button, textarea{
 .border-blue{
     border-bottom: 2px solid #008080;
 }
-body{
+body, ul{
     background-color: #fbfccf;
 }
 .white{
@@ -24,4 +37,7 @@ body{
 }
 .bg-white{
     background-color: white;
+}
+.blueborder{
+    border: 2px solid #008080;
 }

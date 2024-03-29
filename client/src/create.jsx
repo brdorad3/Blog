@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"
 import axios from 'axios';
+import Navbar from './navbar';
 
 const Create = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,8 @@ const Create = () => {
 
   return (
     <>
-    <Link to="/" className='text-indigo-900 text-2xl' >Home</Link>
+    <Navbar/>
+    <h1>Create a new user!</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext} from 'react';
 import { Link, Navigate } from "react-router-dom"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from './main';
+import Navbar from './navbar';
 
 function LogIn(){
   const [data, setData] = useState(null)
@@ -16,6 +17,9 @@ function LogIn(){
   const userDataContext = useContext(UserDataContext);
 
   
+
+  
+
     const handleSubmit = async(e)=> {
       e.preventDefault();
       try{
@@ -40,6 +44,7 @@ console.log("Login success "+ JSON.stringify(response.data.user) )
       }
       
     }
+
     const handleChange = (e) => {
       const { name, value } = e.target;
       setFormData({
@@ -50,7 +55,8 @@ console.log("Login success "+ JSON.stringify(response.data.user) )
    
     return(
         <>
-        <Link to="/" className='text-indigo-900 text-2xl' >Home</Link>
+        <Navbar/>
+        
           <form onSubmit={handleSubmit} action="http://localhost:3000/api/login">
             <input
               type="email"

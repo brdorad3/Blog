@@ -15,5 +15,7 @@ router.get("/login", userCon.log_in_get);
 router.post("/api/login", userCon.log_in_post);
 router.get("/write", postCon.create_get)
 router.post("/api/write", postCon.create_post);
+router.get("/api/:postId", postCon.details_get)
+
 
 module.exports = router;

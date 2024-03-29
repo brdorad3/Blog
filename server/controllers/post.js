@@ -6,13 +6,13 @@ const axios = require("axios");
 
 
 exports.create_get = asyncHandler(async(req, res, next)=>{
-    const post = await Post.find().sort({Date: 1}).populate("author").exec()
+    const post = await Post.find().sort({Date: -1}).populate("author").exec()
     res.json({post});
 })
 
 exports.create_post = [
     body("title").isLength({min:2, max:30}).escape().withMessage("Title of the post must be specified"),
-    body("content").isLength({min:2, max:200}).escape().withMessage("Content of the post must be specified"),
+    body("content").isLength({min:2, max:1000}).escape().withMessage("Content of the post must be specified"),
     asyncHandler(async(req, res, next)=>{
         const errors = validationResult(req)
         
@@ -33,4 +33,10 @@ exports.create_post = [
     res.status(500).json({ e: 'Internal server error' });
         }
     })
-]
+];
+exports.details_get = asyncHandler(async(req, res, next)=>{
+    const post = await Post.findById(req.params.postId);
+    console.log(req.params.postId)
+    res.json(post)
+
+})

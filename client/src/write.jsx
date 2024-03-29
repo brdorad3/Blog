@@ -2,6 +2,7 @@ import {useState, useEffect, useContext} from "react"
 import axios from "axios"
 import { useNavigate, Link } from 'react-router-dom';
 import { UserDataContext } from "./main";
+import Navbar from "./navbar";
 
 function Write(){
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function Write(){
         
       }
     },[])
+   
 
     const [errors, setErrors] = useState([]);
     const handleSubmit = (e) => {
@@ -50,7 +52,8 @@ function Write(){
     
 return(
     <>
-    <Link to="/" >Home</Link>
+    <Navbar/>
+    
     <form className="flex flex-col gap-5 justify-center items-center p-20" onSubmit={handleSubmit}>
         <h1>Write a post</h1>
         <input type="text" 
@@ -61,7 +64,7 @@ return(
         maxLength={15}
         onChange={handleChange}
         className="justify-self-start self-start" />
-        <textarea name="content" cols="30" rows="10" required placeholder="Content" minLength={3} maxLength={100} onChange={handleChange}
+        <textarea name="content" cols="30" rows="10" required placeholder="Content" minLength={3} maxLength={1000} onChange={handleChange}
          className="justify-self-start self-start"></textarea>
         <button type="submit" className=" self-start" >Submit</button>
     </form>
