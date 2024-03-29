@@ -56,8 +56,9 @@ console.log("Login success "+ JSON.stringify(response.data.user) )
     return(
         <>
         <Navbar/>
-        
-          <form onSubmit={handleSubmit} action="http://localhost:3000/api/login">
+        <div className='flex flex-col gap-8 px-60 py-20'>
+        <h1 className='text-black text-3xl yatra'>Log in!</h1>
+          <form onSubmit={handleSubmit} action="http://localhost:3000/api/login" className='flex flex-col gap-5 items-start' >
             <input
               type="email"
               name="email"
@@ -78,7 +79,7 @@ console.log("Login success "+ JSON.stringify(response.data.user) )
               minLength={8}
               maxLength={58}
             />
-            <button type="submit">Submit</button>
+            <button className='p-1 blue font-black' type="submit">Submit</button>
           </form>
           {errors.length > 0 && (
         <div>
@@ -92,7 +93,8 @@ console.log("Login success "+ JSON.stringify(response.data.user) )
       )}
         <div>
           <h2>Dont have an account?</h2>
-          <Link to="/create"> Sign up</Link>
+          <Link to="/create" className='blue yatra'> Sign up</Link>
+        </div>
         </div>
         </>
     )

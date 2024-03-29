@@ -16,8 +16,8 @@
   
 
 input,  button, textarea{
-    border: 2px solid black;
-    border-radius: 7px;
+    border: 3px solid #008080;
+    border-radius: 10px;
 }/* #008080 #fbfccf*/
 
 .blue{
@@ -40,4 +40,16 @@ body, ul{
 }
 .blueborder{
     border: 2px solid #008080;
+}
+input{
+    height: 45px;
+}
+.bblueb{
+    border: 3px solid #008080;
+    border-radius: 10px;
+}
+@media only screen and (max-width: 1000px) {
+    body, form, div{
+        padding: 0px;
+    }
 }

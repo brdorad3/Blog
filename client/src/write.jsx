@@ -54,8 +54,8 @@ return(
     <>
     <Navbar/>
     
-    <form className="flex flex-col gap-5 justify-center items-center p-20" onSubmit={handleSubmit}>
-        <h1>Write a post</h1>
+    <form className="flex flex-col gap-5 justify-center items-start p-20" onSubmit={handleSubmit}>
+        <h1 className="font-black yatra text-3xl">Write a post!</h1>
         <input type="text" 
         required
         name="title"
@@ -66,7 +66,7 @@ return(
         className="justify-self-start self-start" />
         <textarea name="content" cols="30" rows="10" required placeholder="Content" minLength={3} maxLength={1000} onChange={handleChange}
          className="justify-self-start self-start"></textarea>
-        <button type="submit" className=" self-start" >Submit</button>
+        <button type="submit" className=" self-start blue p-1 text-black" >Submit</button>
     </form>
     </>
 )

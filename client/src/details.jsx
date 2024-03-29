@@ -24,9 +24,9 @@ function Details() {
     <Navbar/>
     
     {post && 
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
+    <div className='px-60 py-10 flex flex-col gap-5'>
+      <h1 className='text-2xl font-black'>{post.title}</h1>
+      <p className='leading-8'>{post.content}</p>
     </div>
     }
   

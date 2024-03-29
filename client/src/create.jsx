@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom"
 import axios from 'axios';
 import Navbar from './navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const Create = () => {
     email: '',
     password: ''
   });
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 
   const handleChange = (e) => {
@@ -25,6 +26,7 @@ const Create = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/create', formData);
       console.log(response.data);
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrors(error.response.data.errors || []);
@@ -37,8 +39,9 @@ const Create = () => {
   return (
     <>
     <Navbar/>
-    <h1>Create a new user!</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='flex flex-col px-60 py-20 gap-8'>
+    <h1 className='yatra text-3xl'>Create a new user!</h1>
+      <form onSubmit={handleSubmit} className='flex flex-col items-start gap-5'>
         <input
           type="text"
           name="username"
@@ -69,7 +72,7 @@ const Create = () => {
           maxLength={25}
           required
         />
-        <button type="submit">Submit</button>
+        <button className='blue p-1 font-black' type="submit">Submit</button>
       </form>
       {errors.length > 0 && (
         <div>
@@ -81,6 +84,7 @@ const Create = () => {
           </ul>
         </div>
       )}
+      </div>
     </>
   );
 };

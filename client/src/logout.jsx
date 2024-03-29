@@ -24,10 +24,10 @@ function Logout(){
     return (
         <>
         <Navbar/>
-        <div>
-            <p>Are you sure you want to logout?</p>
-            <button onClick={handleLogout}>Logout</button>
-            <Link to="/">Cancel</Link>
+        <div className="px-60 py-20">
+            <p className="text-xl font-black yatra">Are you sure you want to logout?</p>
+            <button onClick={handleLogout} className=" blue font-black p-1">Logout</button>
+            <Link to="/" className=" blue font-black bblueb p-1">Cancel</Link>
         </div>
         </>
     );
