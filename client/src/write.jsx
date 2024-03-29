@@ -1,18 +1,34 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect, useContext} from "react"
 import axios from "axios"
+import { useNavigate, Link } from 'react-router-dom';
+import { UserDataContext } from "./main";
 
 function Write(){
-
+  const navigate = useNavigate();
+  
+  const userDataContext = useContext(UserDataContext)
     const [formData, setFormData] = useState({
         title: '',
-        content: ''
+        content: '',
+        author: userDataContext.userData,
     })
+    useEffect(()=>{
+      if(!userDataContext.userData){
+        navigate("/login")
+        
+      }
+    },[])
+
     const [errors, setErrors] = useState([]);
     const handleSubmit = (e) => {
         e.preventDefault()
         try{
-            const response = axios.post("http://localhost:3000/api/write", formData)
+            const response = axios.post("http://localhost:3000/api/write", formData, {
+              withCredentials: true,
+              credentials: "include",
+            } )
             console.log(response.data)
+            navigate('/');
         }catch(error){
             console.error(error.response.data);
             if (error.response && error.response.status === 400) {
@@ -26,15 +42,15 @@ function Write(){
 
     const handleChange = (e) =>{
         const { name, value } = e.target;
-        console.log(e.target)
         setFormData({
           ...formData,
           [name]: value
         });
     }
-
+    
 return(
     <>
+    <Link to="/" >Home</Link>
     <form className="flex flex-col gap-5 justify-center items-center p-20" onSubmit={handleSubmit}>
         <h1>Write a post</h1>
         <input type="text" 

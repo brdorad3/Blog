@@ -6,7 +6,7 @@ const axios = require("axios");
 
 
 exports.create_get = asyncHandler(async(req, res, next)=>{
-    const post = await Post.find().sort({Date: 1}).exec()
+    const post = await Post.find().sort({Date: 1}).populate("author").exec()
     res.json({post});
 })
 
@@ -15,11 +15,13 @@ exports.create_post = [
     body("content").isLength({min:2, max:200}).escape().withMessage("Content of the post must be specified"),
     asyncHandler(async(req, res, next)=>{
         const errors = validationResult(req)
+        
         if(!errors.isEmpty()){
             res.status(400).json({ errors: errors.array() });
         }try{
+            
             const post = new Post({
-                author: req.user,
+                author: req.body.author,
                 title: req.body.title, 
                 content: req.body.content,
                 isPublished: false

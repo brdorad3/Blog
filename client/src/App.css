@@ -22,3 +22,6 @@ body{
 .white{
     color: #fbfccf;
 }
+.bg-white{
+    background-color: white;
+}

@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 router.get("/create", userCon.create_get);
 router.post("/api/create", userCon.create_post);
-router.get("/api/login", userCon.log_in_get);
+router.get("/login", userCon.log_in_get);
 router.post("/api/login", userCon.log_in_post);
 router.get("/write", postCon.create_get)
 router.post("/api/write", postCon.create_post);

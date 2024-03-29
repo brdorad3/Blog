@@ -4,10 +4,11 @@ const { body, validationResult } = require("express-validator");
 const axios = require("axios");
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
+const Post = require("../models/post");
 
 
 exports.create_get = asyncHandler(async(req, res, next)=>{
-    const user = await User.find({email: "unique@gmail.com"}).sort({username:1}).exec();
+    const user = await User.find({}).sort().exec();
     res.json({user});
 })
 
@@ -52,25 +53,28 @@ exports.create_post = [
    } )
 ]
 exports.log_in_get = asyncHandler(async(req, res, next)=>{
-    res.json("ii")
+ 
+
+    res.json({user: req.user})
+    
 })
 exports.log_in_post = asyncHandler(async (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
-        
-       
+      
       if (err) {
-        
         return res.status(500).json({ message: 'Internal server error' });
       }
       if (!user) {
         return res.status(401).json({ message: info.message });
       }
-      // If authentication succeeds, you may want to manually log the user in
       req.login(user, (err) => {
         if (err) {
           return res.status(500).json({ message: 'Internal server error' });
         }
-        return res.json({ message: 'Login successful' ,user:user});
+        console.log('Login route!  Authenticated?:', req.isAuthenticated(), ' Session:', req.session);
+        
+        return res.json({ message: 'Login successfull', user:req.user });
+        
       });
     })(req, res, next);
   });

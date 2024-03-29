@@ -13,8 +13,10 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user")
 const bcrypt = require('bcryptjs');
+const MongoStore = require('connect-mongo');
 
 const app = express();
+
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGO_URI;
@@ -27,13 +29,28 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true,
+  optionSuccessStatus: 200
+};
+
+app.use(cookieParser());
+app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true, store: MongoStore.create({
+  mongoUrl: process.env.MONGO_URI,
+  collectionName: 'sessions'
+  
+}),
+cookie: { maxAge: 1000*60*60*24, ephemeral: true }  }));
+app.use(passport.session());
+// app.use(cache('2 minutes'))
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true, cookie: { maxAge : new Date(Date.now() + 3600000) } }));
-app.use(passport.session());
+
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/logout", (req, res, next) => {
@@ -41,7 +58,8 @@ app.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    
+    res.json("success")
   });
 });
 
@@ -77,25 +95,29 @@ passport.use(
   })
 );
 passport.serializeUser((user, done) => {
+  console.log("ww")
+  
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await User.findById(id);
+    
+    const user = await User.findById(id).exec();
+    console.log("ll")
+    console.log(user)
     done(null, user);
   } catch(err) {
     done(err);
   };
 });
 
-
 app.use('/', indexRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+  console.log(req.user)
 });
 
 // error handler
