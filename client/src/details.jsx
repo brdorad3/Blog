@@ -52,22 +52,28 @@ function Details() {
   return(
     <>
     <Navbar/>
-    
+    <div className='px-60 py-20 flex flex-col gap-10'>
     {post && 
-    <div className='px-60 py-10 flex flex-col gap-5'>
+    <div className=' flex flex-col gap-5'>
       <h1 className='text-2xl font-black'>{post.title}</h1>
       <p className='leading-8'>{post.content}</p>
     </div>
     }
   
+  {userDataContext.userData ?
+  
     <form onSubmit={handleSubmit}>
-      <input type="text" name='content' value={formData.content} onChange={handleChange}/>
+      <textarea type="text" name='content' rows={4} cols={30} value={formData.content} onChange={handleChange} placeholder='Write a comment: '></textarea>
     <button type='submit'>Submit</button>
-
-
-
     </form>
+    :
+   
+    <p className='flex justify-center yatra border-blue'>Log in to write!</p>
+}
+<div className=''>
     <Comment/>
+    </div>
+    </div>
     </>
   )
 }
