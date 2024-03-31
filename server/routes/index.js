@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userCon = require("../controllers/user");
 const postCon = require("../controllers/post")
+const commCon = require("../controllers/comment")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,5 +18,7 @@ router.get("/write", postCon.create_get)
 router.post("/api/write", postCon.create_post);
 router.get("/api/:postId", postCon.details_get)
 
+router.get("/comments/:postId", commCon.create_get);
+router.post("/api/comment", commCon.create_post);
 
 module.exports = router;

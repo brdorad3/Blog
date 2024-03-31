@@ -4,9 +4,13 @@ const Schema = mongoose.Schema;
 
 
 const commentSchema = new Schema({
-    username: {
-        type:String, 
-        required: true
+    author: {
+        type: Schema.Types.ObjectId, 
+        ref: "User"
+    },
+    post: {
+        type: Schema.Types.ObjectId, 
+        ref: "Post"
     },
     content: {
         type: String, 
@@ -18,4 +22,4 @@ const commentSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("Comment", commentSchema)
