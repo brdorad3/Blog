@@ -1,7 +1,7 @@
 const User = require("../models/user")
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
-const axios = require("axios");
+
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 const Post = require("../models/post");
