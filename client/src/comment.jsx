@@ -10,7 +10,7 @@ function Comment(){
     
     useEffect(()=>{
         fetchComment(postId)
-       },[comms])
+       },[])
 
     const fetchComment = async(postId) => {
     
