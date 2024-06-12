@@ -39,9 +39,8 @@ function Details() {
   const handleSubmit = async(e) => {
     e.preventDefault()
     try{
-        console.log(postId)
-          const response = await axios.post("http://localhost:3000/api/comment", formData)
-      console.log(response)
+        
+        await axios.post("http://localhost:3000/api/comment", formData)
 
     }catch(error){
           console.error('Error submitting form:', error);

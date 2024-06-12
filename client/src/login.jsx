@@ -1,12 +1,11 @@
-import React, { useState, useContext} from 'react';
-import { Link, Navigate } from "react-router-dom"
+import  { useState, useContext} from 'react';
+import { Link } from "react-router-dom"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from './main';
 import Navbar from './navbar';
 
 function LogIn(){
-  const [data, setData] = useState(null)
   const [formData, setFormData] =  useState({
     email: '',
     password: '',
@@ -28,9 +27,7 @@ function LogIn(){
     credentials:"include",
    }
 );
-console.log("Login success "+ JSON.stringify(response.data.user) )
         userDataContext.setUserData(response.data.user); 
-        setData(response.data.user)
         navigate('/');
         
       }catch(error){

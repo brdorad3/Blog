@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from "react"
 import axios from "axios"
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from "./main";
 import Navbar from "./navbar";
 
@@ -21,21 +21,20 @@ function Write(){
     },[])
    
 
-    const [errors, setErrors] = useState([]);
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         try{
-            const response = axios.post("http://localhost:3000/api/write", formData, {
+            axios.post("http://localhost:3000/api/write", formData, {
               withCredentials: true,
               credentials: "include",
             } )
-            console.log(response.data)
             navigate('/');
         }catch(error){
             console.error(error.response.data);
             if (error.response && error.response.status === 400) {
               
-              setErrors(error.response.data.errors || []);
+              console.log(error.response.data.errors || []);
             } else {
               console.error('Error submitting form:', error);
             }

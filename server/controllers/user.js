@@ -1,7 +1,6 @@
 const User = require("../models/user")
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
-
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 const Post = require("../models/post");
@@ -71,13 +70,9 @@ exports.log_in_post = asyncHandler(async (req, res, next) => {
         if (err) {
           return res.status(500).json({ message: 'Internal server error' });
         }
-        console.log('Login route!  Authenticated?:', req.isAuthenticated(), ' Session:', req.session);
         
         return res.json({ message: 'Login successfull', user:req.user });
         
       });
     })(req, res, next);
   });
-exports.log_in_posts = asyncHandler(async(res, req, next)=>{
-console.log(req.body)
-})

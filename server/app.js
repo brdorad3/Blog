@@ -74,28 +74,23 @@ passport.use(
     try {
       const user = await User.findOne({ email: username });
       if (!user) {
-        console.log("email")
         return done(null, false, { message: "Incorrect email" });
         
       };
       const passwordMatch = await bcrypt.compare(password, user.password);
       
       if (!passwordMatch) {
-        console.log(password)
         return done(null, false, { message: "Incorrect password" });
       };
-      console.log("user")
       
       return done(null, user);
       
     } catch(err) {
-      console.log("error")
       return done(err);
     };
   })
 );
 passport.serializeUser((user, done) => {
-  console.log("ww")
   
   done(null, user.id);
 });
@@ -104,8 +99,6 @@ passport.deserializeUser(async (id, done) => {
   try {
     
     const user = await User.findById(id).exec();
-    console.log("ll")
-    console.log(user)
     done(null, user);
   } catch(err) {
     done(err);
@@ -114,19 +107,16 @@ passport.deserializeUser(async (id, done) => {
 
 app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
-  console.log(req.user)
 });
 
-// error handler
+
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

@@ -36,7 +36,6 @@ exports.create_post = [
 ];
 exports.details_get = asyncHandler(async(req, res, next)=>{
     const post = await Post.findById(req.params.postId);
-    console.log(req.params.postId)
     res.json(post)
 
 })

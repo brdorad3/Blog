@@ -18,7 +18,6 @@ exports.create_post = [
         
         const errors = validationResult(req);
         if(!errors.isEmpty()){
-            console.log(errors)
             res.json(errors);
         }
         try{

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom"
+import { useState } from 'react';
 import axios from 'axios';
 import Navbar from './navbar';
 import { useNavigate } from 'react-router-dom';
@@ -24,8 +23,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/create', formData);
-      console.log(response.data);
+    await axios.post('http://localhost:3000/api/create', formData);
       navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {
