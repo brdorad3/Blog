@@ -23,7 +23,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    await axios.post('http://localhost:3000/api/create', formData);
+    await axios.post('https://blog-qf1e.onrender.com/api/create', formData);
       navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {

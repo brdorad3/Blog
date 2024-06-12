@@ -42,7 +42,7 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
   collectionName: 'sessions'
   
 }),
-cookie: { maxAge: 1000*60*60*24, ephemeral: true }  }));
+cookie: { maxAge: 1000*60*60*24, ephemeral: true, secure:true }  }));
 app.use(passport.session());
 // app.use(cache('2 minutes'))
 app.use(cors(corsOptions));

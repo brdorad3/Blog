@@ -25,7 +25,7 @@ function Write(){
     const handleSubmit = (e) => {
         e.preventDefault()
         try{
-            axios.post("http://localhost:3000/api/write", formData, {
+            axios.post("https://blog-qf1e.onrender.com/api/write", formData, {
               withCredentials: true,
               credentials: "include",
             } )

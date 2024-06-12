@@ -19,7 +19,7 @@ function Details() {
   
   useEffect(() => {
     // Fetch post data based on postId
-    axios.get(`http://localhost:3000/api/${postId}`)
+    axios.get(`https://blog-qf1e.onrender.com/api/${postId}`)
       .then(response => {
         setPost(response.data);
         
@@ -40,7 +40,7 @@ function Details() {
     e.preventDefault()
     try{
         
-        await axios.post("http://localhost:3000/api/comment", formData)
+        await axios.post("https://blog-qf1e.onrender.com/api/comment", formData)
 
     }catch(error){
           console.error('Error submitting form:', error);

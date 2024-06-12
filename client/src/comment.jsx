@@ -1,10 +1,10 @@
-import {useState, useEffect, useContext } from "react"
+import {useState, useEffect } from "react"
 import { useParams } from 'react-router-dom';
-import { UserDataContext } from "./main";
+
 
 function Comment(){
     const [comms, setComms] = useState(null);
-    const userDataContext = useContext(UserDataContext)
+    
     const { postId } = useParams();
     
     
@@ -14,7 +14,7 @@ function Comment(){
 
     const fetchComment = async(postId) => {
     
-        const response = await fetch(`http://localhost:3000/comments/${postId}`);
+        const response = await fetch(`https://blog-qf1e.onrender.com/comments/${postId}`);
         const responseData = await response.json();
         
         setComms(responseData);

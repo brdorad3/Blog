@@ -15,7 +15,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/create'); 
+      const response = await fetch('https://blog-qf1e.onrender.com/create'); 
       
       const responseData = await response.json();
       setTest(responseData);
