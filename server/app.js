@@ -31,7 +31,7 @@ app.set('view engine', 'jade');
 
 
 const corsOptions = {
-  origin: 'https://blog-chi-snowy-38.vercel.app/',
+  origin: 'https://blog-chi-snowy-38.vercel.app',
   credentials: true,
   optionSuccessStatus: 200
 };
