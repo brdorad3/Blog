@@ -31,7 +31,7 @@ app.set('view engine', 'jade');
 
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://blog-7tydo1uhw-brdorads-projects.vercel.app',
   credentials: true,
   optionSuccessStatus: 200
 };
@@ -42,7 +42,7 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
   collectionName: 'sessions'
   
 }),
-cookie: { maxAge: 1000*60*60*24, ephemeral: true, secure:false }  }));
+cookie: { maxAge: 1000*60*60*24, ephemeral: true, secure:true }  }));
 app.use(passport.session());
 // app.use(cache('2 minutes'))
 app.use(cors(corsOptions));

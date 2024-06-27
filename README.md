@@ -1,9 +1,7 @@
 # Blog
 
 
-# URL
-
-https://blog-chi-snowy-38.vercel.app/
+<a href="https://blog-7tydo1uhw-brdorads-projects.vercel.app">Live Preview</a>
 
 
 # Homepage
