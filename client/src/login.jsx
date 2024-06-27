@@ -53,9 +53,9 @@ function LogIn(){
     return(
         <>
         <Navbar/>
-        <div className='flex flex-col gap-8 px-60 py-20'>
+        <div className='flex flex-col gap-8 px-60 py-20 padding'>
         <h1 className='text-black text-3xl yatra'>Log in!</h1>
-          <form onSubmit={handleSubmit} action="http://localhost:3000/api/login" className='flex flex-col gap-5 items-start' >
+          <form onSubmit={handleSubmit} action="https://blog-qf1e.onrender.com/api/login" className='flex flex-col gap-5 items-start' >
             <input
               type="email"
               name="email"

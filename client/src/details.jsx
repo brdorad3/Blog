@@ -51,7 +51,7 @@ function Details() {
   return(
     <>
     <Navbar/>
-    <div className='px-60 py-20 flex flex-col gap-10'>
+    <div className='px-60 py-20 flex flex-col gap-10 padding'>
     {post && 
     <div className=' flex flex-col gap-5'>
       <h1 className='text-2xl font-black'>{post.title}</h1>

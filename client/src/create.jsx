@@ -37,7 +37,7 @@ const Create = () => {
   return (
     <>
     <Navbar/>
-    <div className='flex flex-col px-60 py-20 gap-8'>
+    <div className='flex flex-col px-60 py-20 gap-8 padding'>
     <h1 className='yatra text-3xl'>Create a new user!</h1>
       <form onSubmit={handleSubmit} className='flex flex-col items-start gap-5'>
         <input

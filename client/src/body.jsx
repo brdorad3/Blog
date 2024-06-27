@@ -28,15 +28,14 @@ function Body(){
 return(<>
 {userDataContext.userData && (
         <div>
-          {/* Display user data */}
           <p>Username: {userDataContext.userData.username.toLocaleString()}</p>
           
         </div>
       )}
 
- {tests && 
+ {tests ?
  (  
-  <div className=" mx-60 my-10 bg-white rounded-2xl white" >
+  <div className=" mx-60 my-10 bg-white rounded-2xl white test" >
         <ul className="flex flex-col gap-5 p-7 ">
           {tests.map((test, index) => (
           
@@ -54,7 +53,11 @@ return(<>
           ))}
         </ul>
         </div>
-      )}
+      ):
+      <div className="w-screen h-60 flex justify-center items-center">
+      <h1>Loading...</h1>
+      </div>
+      }
   
 </>)
 }

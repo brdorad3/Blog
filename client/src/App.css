@@ -18,7 +18,7 @@
 input,  button, textarea{
     border: 3px solid #008080;
     border-radius: 10px;
-}/* #008080 #fbfccf*/
+}
 
 .blue{
     color: #008080;
@@ -48,8 +48,23 @@ input{
     border: 3px solid #008080;
     border-radius: 10px;
 }
-@media only screen and (max-width: 1000px) {
-    body, form, div{
-        padding: 0px;
+@media screen and (max-width:1000px) {
+    .test{
+        margin: 0px;
+    }
+    .padding{
+        padding: 1.5rem 1rem 1.5rem 1rem;
+    }
+    .sz{
+        font-size: 1.3rem;
+    }
+    .sz2{
+        font-size: 0.9rem;
+    }
+    .gp{
+        gap:15px
+    }
+    .pd{
+        padding: 7px 5px 7px 5px;
     }
 }

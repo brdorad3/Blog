@@ -31,7 +31,7 @@ app.set('view engine', 'jade');
 
 
 const corsOptions = {
-  origin: 'https://blog-chi-snowy-38.vercel.app',
+  origin: 'http://localhost:5173',
   credentials: true,
   optionSuccessStatus: 200
 };
@@ -42,7 +42,7 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
   collectionName: 'sessions'
   
 }),
-cookie: { maxAge: 1000*60*60*24, ephemeral: true, secure:true }  }));
+cookie: { maxAge: 1000*60*60*24, ephemeral: true, secure:false }  }));
 app.use(passport.session());
 // app.use(cache('2 minutes'))
 app.use(cors(corsOptions));
